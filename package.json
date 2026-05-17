@@ -1,0 +1,36 @@
+{
+  "name": "bring-to-front",
+  "version": "2.0.0",
+  "description": "Bring a DHTMLX (or any) modal above the rest of the page by raising its inline z-index",
+  "type": "module",
+  "main": "src/bring-to-front.js",
+  "exports": {
+    ".": "./src/bring-to-front.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "dhtmlx",
+    "z-index",
+    "bring-to-front",
+    "modal",
+    "vanilla-js",
+    "no-dependencies"
+  ],
+  "author": "Hassan Bagheri <bagheri.h@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hbagheri/dhtmlx_set_highest_zIndex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hbagheri/dhtmlx_set_highest_zIndex/issues"
+  },
+  "homepage": "https://github.com/hbagheri/dhtmlx_set_highest_zIndex#readme"
+}

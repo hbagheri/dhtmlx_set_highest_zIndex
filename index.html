@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bring-to-front demo</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 0; }
+
+        /* A "Bootstrap-like" navbar sitting on top of the page. */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: #1e293b; color: white;
+            padding: 0.75rem 1rem;
+            z-index: 1030;
+        }
+
+        .page {
+            padding: 5rem 1rem 1rem;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        button {
+            background: #2563eb; color: white; border: 0;
+            padding: 0.5rem 1rem; border-radius: 4px;
+            cursor: pointer; font-size: 1rem;
+        }
+
+        /* A fake "dhtmlx" modal: lower z-index than the navbar, on purpose. */
+        .dhtmlx_window_active {
+            position: fixed;
+            top: 30%; left: 50%;
+            transform: translate(-50%, -30%);
+            width: 320px;
+            background: white;
+            border: 1px solid #94a3b8;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            display: none;
+            z-index: 1000;  /* lower than navbar */
+        }
+
+        .dhtmlx_window_active.visible { display: block; }
+    </style>
+</head>
+<body>
+    <div class="navbar">Pretend Bootstrap Navbar (z-index: 1030)</div>
+
+    <div class="page">
+        <h1>bring-to-front demo</h1>
+        <p>The fake modal has <code>z-index: 1000</code>, the navbar has
+            <code>z-index: 1030</code>. By default the modal sits <em>behind</em>
+            the navbar. Click <strong>Bring to front</strong> to raise it.</p>
+
+        <p>
+            <button id="show">Show modal</button>
+            <button id="raise">Bring to front</button>
+        </p>
+        <p>Current modal inline z-index: <code id="zout">(unset)</code></p>
+    </div>
+
+    <div class="dhtmlx_window_active" id="modal">
+        <h3>I'm a "DHTMLX" modal</h3>
+        <p>The navbar should now be below me.</p>
+    </div>
+
+    <script type="module">
+        import { bringToFront, getZIndex } from './src/bring-to-front.js';
+
+        const modal = document.getElementById('modal');
+        const zout  = document.getElementById('zout');
+
+        const refresh = () => {
+            zout.textContent = modal.style.zIndex || '(unset)';
+        };
+
+        document.getElementById('show').addEventListener('click', () => {
+            modal.classList.add('visible');
+            refresh();
+        });
+
+        document.getElementById('raise').addEventListener('click', () => {
+            const z = bringToFront('.dhtmlx_window_active');
+            console.log('raised to z-index', z);
+            refresh();
+        });
+
+        refresh();
+    </script>
+</body>
+</html>
