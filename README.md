@@ -1,5 +1,7 @@
 # bring-to-front
 
+[![tests](https://github.com/hbagheri/dhtmlx_set_highest_zIndex/actions/workflows/test.yml/badge.svg)](https://github.com/hbagheri/dhtmlx_set_highest_zIndex/actions/workflows/test.yml)
+
 A tiny dependency-free utility (~50 lines) that bumps an element's inline
 `z-index` to one above everything else on the page.
 
